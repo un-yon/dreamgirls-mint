@@ -1,18 +1,105 @@
-import logo from './logo.svg';
-import './App.css';
-import './styles/serenity_mint.css';
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
+import * as s from "./styles/globalStyles";
+import styled from "styled-components";
 // emailjs includes
-import emailjs from '@emailjs/browser';
 import { Form, Input, TextArea, Button } from "semantic-ui-react";
 import Swal from "sweetalert2";
 
 const SERVICE_ID = "service_a2uwcao";
 const TEMPLATE_ID = "template_gubttuf";
 const USER_ID = "Da1Xnpg54YA6ACL31";
+
+const truncate = (input, len) =>
+  input.length > len ? `${input.substring(0, len)}...` : input;
+
+export const StyledButton = styled.button`
+  padding: 10px;
+  border-radius: 50px;
+  border: none;
+  background-color: var(--secondary);
+  padding: 10px;
+  font-weight: bold;
+  color: var(--secondary-text);
+  width: 100px;
+  cursor: pointer;
+  box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  -moz-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+`;
+
+export const StyledRoundButton = styled.button`
+  padding: 10px;
+  border-radius: 100%;
+  border: none;
+  background-color: var(--primary);
+  padding: 10px;
+  font-weight: bold;
+  font-size: 15px;
+  color: var(--primary-text);
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  -webkit-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  -moz-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
+  :active {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+  }
+`;
+
+export const ResponsiveWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: stretched;
+  align-items: stretched;
+  width: 100%;
+  @media (min-width: 767px) {
+    flex-direction: row;
+  }
+`;
+
+export const StyledLogo = styled.img`
+  width: 200px;
+  @media (min-width: 767px) {
+    width: 300px;
+  }
+  transition: width 0.5s;
+  transition: height 0.5s;
+`;
+
+export const StyledImg = styled.img`
+  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
+  border: 4px dashed var(--secondary);
+  background-color: var(--accent);
+  border-radius: 100%;
+  width: 200px;
+  @media (min-width: 900px) {
+    width: 250px;
+  }
+  @media (min-width: 1000px) {
+    width: 300px;
+  }
+  transition: width 0.5s;
+`;
+
+export const StyledLink = styled.a`
+  color: var(--secondary);
+  text-decoration: none;
+`;
 
 function App() {
   const dispatch = useDispatch();
@@ -133,126 +220,228 @@ function App() {
     e.target.reset()
   };
 
-    return (
-      <div>
-        <title>Serenity Token | CREATIVE DEFI TALENT AGENCY</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta charSet="utf-8" />
-        <meta name="keywords" content="We live to turn great ideas, Key Features, What We Do, Our Portfolio" />
-        <meta name="description" content="Serenity Token combines knowledge with expertise, design with creativity, and meaning with magic in order to connect talented artists with the crypto market as well as with our unique community of investors." />
-        <meta name="page_type" content="np-template-header-footer-from-plugin" />
-        <link rel="icon" href="SerenityLogo_32.png" size="32x32" />
-        <link rel="icon" href="SerenityLogo_128.png" size="128x128" />
-        {/*jQuery 3.6.0*/}
-        {/*Google Fonts*/}
-        <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Bai+Jamjuree:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" />
-        <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bai+Jamjuree:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i" />
-        {/*Bootstrap 5.2.0*/}
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossOrigin="anonymous" />
-        <nav id="serenity-navbar" className="navbar navbar-expand-sm fixed-top navbar-dark">
-          <div className="container-fluid">
-            <a className="navbar-brand" href="https://serenitytoken.art/">
-              <img src="SerenityLogo_r.png" style={{height: '70px'}} />
-              <span className="heading-text">SERENITY</span>
-            </a>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
-              <span className="navbar-toggler-icon" />
-            </button>
-            <div className="navbar-collapse collapse justify-content-right" id="navbarMenu">
-              <ul className="navbar-nav">
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#serenityBody">Home</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/Content/files/SerenityWhitepaper.pdf" target="_blank">Whitepaper</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#tokenomics">Tokenomics</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#about">About</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#roadmap">Roadmap</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#charity">Charity</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/nft.html">NFTs</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="https://serenitytoken.art/#team">Team</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <section className="collection">
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-6 character-pos">
-                <div className="row">
-                  <div className="col-12" style={{marginLeft: '-25px'}}>
-                    <img className="character" />
-                  </div>
-                </div>
-              </div>
-              <div className="col-sm-6 col-12 order-sm-3" style={{display: 'table'}}>
-                <div className="row" style={{display: 'table-cell', verticalAlign: 'middle'}}>
-                  <div className="col-12 mint-info">
-                    {/*this is where the mint info will appear*/}
-                    <div className="row">
-                      <div className="col-12 title" />
-                      <div className="col-12">
-                        Make sure you are connected to the right network (Ethereum Mainnet) and the correct address.
-                        <br />
-                        Please note: Once you make the purchase, you cannot undo this action.
-                        <br /><br /><br />
-                        We have set the gas limit to 180000 for the contract to successfully mint your NFT.
-                        <br />
-                        We recommend that you don't lower the gas limit.
-                      </div>
-                      <div className="col-12" style={{marginTop: '25px'}}>
-                        1 <span className="collection-name" /> costs <span className="collection-cost" /> ETH + Gas Fees
-                      </div>
-                      <div className="col-12" style={{marginTop: '25px'}}>
-                        Total <span className="collection-name" /> Minted
-                      </div>
-                    </div>
-                    {/* this is where the mint dApp should go */}
-                    <div className="row">
-                      <div className="col-3">
-                        <span className="total-minted">???</span> / <span className="collection-total" />
-                      </div>
-                      <div className="col-9">
-                        <div className="border">
-                          {/* progress bar */}
-                          <div className="mint-progress-bar">&nbsp;</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row" style={{marginTop: '15px'}}>
-                      <div className="col-12 col-md-6 mint-offset">
-                        <div className="row">
-                          <div className="col-2"><div className="round-button">-</div></div>
-                          <div className="col-8"><input type="text" id="mint-amount" /></div>
-                          <div className="col-2"><div className="round-button">+</div></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="row" style={{marginTop: '15px'}}>
-                      <div className="col-12 col-md-6 mint-offset">
-                        <button type="button" name="mint" id="mint-button">Mint</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+  return (
+    <s.Screen>
+      <s.Container
+        flex={1}
+        ai={"center"}
+        style={{ padding: 24, backgroundColor: "var(--primary)" }}
+        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+      >
+        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
+        <s.SpacerSmall />
+        <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
+          <s.Container flex={1} jc={"center"} ai={"center"}>
+            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
+          </s.Container>
+          <s.SpacerLarge />
+          <s.Container
+            flex={2}
+            jc={"center"}
+            ai={"center"}
+            style={{
+              backgroundColor: "var(--accent)",
+              padding: 24,
+              borderRadius: 24,
+              border: "4px dashed var(--secondary)",
+              boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+            }}
+          >
+            <s.TextTitle
+              style={{
+                textAlign: "center",
+                fontSize: 50,
+                fontWeight: "bold",
+                color: "var(--accent-text)",
+              }}
+            >
+              {data.totalSupply} / {CONFIG.MAX_SUPPLY}
+            </s.TextTitle>
+            <s.TextDescription
+              style={{
+                textAlign: "center",
+                color: "var(--primary-text)",
+              }}
+            >
+              <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK}>
+                {truncate(CONFIG.CONTRACT_ADDRESS, 15)}
+              </StyledLink>
+            </s.TextDescription>
+            <s.SpacerSmall />
+            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+              <>
+                <s.TextTitle
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  The sale has ended.
+                </s.TextTitle>
+                <s.TextDescription
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  You can still find {CONFIG.NFT_NAME} on
+                </s.TextDescription>
+                <s.SpacerSmall />
+                <StyledLink target={"_blank"} href={CONFIG.MARKETPLACE_LINK}>
+                  {CONFIG.MARKETPLACE}
+                </StyledLink>
+              </>
+            ) : (
+              <>
+                <s.TextTitle
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
+                  {CONFIG.NETWORK.SYMBOL}.
+                </s.TextTitle>
+                <s.SpacerXSmall />
+                <s.TextDescription
+                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                >
+                  Excluding gas fees.
+                </s.TextDescription>
+                <s.SpacerSmall />
+                {blockchain.account === "" ||
+                blockchain.smartContract === null ? (
+                  <s.Container ai={"center"} jc={"center"}>
+                    <s.TextDescription
+                      style={{
+                        textAlign: "center",
+                        color: "var(--accent-text)",
+                      }}
+                    >
+                      Connect to the {CONFIG.NETWORK.NAME} network
+                    </s.TextDescription>
+                    <s.SpacerSmall />
+                    <StyledButton
+                      onClick={(e) => {
+                        e.preventDefault();
+                        dispatch(connect());
+                        getData();
+                      }}
+                    >
+                      CONNECT
+                    </StyledButton>
+                    {blockchain.errorMsg !== "" ? (
+                      <>
+                        <s.SpacerSmall />
+                        <s.TextDescription
+                          style={{
+                            textAlign: "center",
+                            color: "var(--accent-text)",
+                          }}
+                        >
+                          {blockchain.errorMsg}
+                        </s.TextDescription>
+                      </>
+                    ) : null}
+                  </s.Container>
+                ) : (
+                  <>
+                    <s.TextDescription
+                      style={{
+                        textAlign: "center",
+                        color: "var(--accent-text)",
+                      }}
+                    >
+                      {feedback}
+                    </s.TextDescription>
+                    <s.SpacerMedium />
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                      <StyledRoundButton
+                        style={{ lineHeight: 0.4 }}
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          decrementMintAmount();
+                        }}
+                      >
+                        -
+                      </StyledRoundButton>
+                      <s.SpacerMedium />
+                      <s.TextDescription
+                        style={{
+                          textAlign: "center",
+                          color: "var(--accent-text)",
+                        }}
+                      >
+                        {mintAmount}
+                      </s.TextDescription>
+                      <s.SpacerMedium />
+                      <StyledRoundButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          incrementMintAmount();
+                        }}
+                      >
+                        +
+                      
+                      </StyledRoundButton>
+                    </s.Container>
+                    <s.SpacerSmall />
+                    <Form onSubmit={handleOnSubmit}>
+                      <Form.Field
+                        id="form-input-control-referral-code"
+                        control={Input}
+                        label="Referral Code"
+                        name="referral_code"
+                        placeholder="enter referral code"
+                      />
+                    </Form>
+                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                      <StyledButton
+                        disabled={claimingNft ? 1 : 0}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleOnSubmit();
+                          claimNFTs();
+                          getData();
+                        }}
+                      >
+                        {claimingNft ? "BUSY" : "BUY"}
+                      </StyledButton>
+                    </s.Container>
+                  </>
+                )}
+              </>
+            )}
+            <s.SpacerMedium />
+          </s.Container>
+          <s.SpacerLarge />
+          <s.Container flex={1} jc={"center"} ai={"center"}>
+            <StyledImg
+              alt={"example"}
+              src={"/config/images/example.gif"}
+              style={{ transform: "scaleX(-1)" }}
+            />
+          </s.Container>
+        </ResponsiveWrapper>
+        <s.SpacerMedium />
+        <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
+          <s.TextDescription
+            style={{
+              textAlign: "center",
+              color: "var(--primary-text)",
+            }}
+          >
+            Please make sure you are connected to the right network (
+            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
+            Once you make the purchase, you cannot undo this action.
+          </s.TextDescription>
+          <s.SpacerSmall />
+          <s.TextDescription
+            style={{
+              textAlign: "center",
+              color: "var(--primary-text)",
+            }}
+          >
+            We have set the gas limit to {CONFIG.GAS_LIMIT} for the contract to
+            successfully mint your NFT. We recommend that you don't lower the
+            gas limit.
+          </s.TextDescription>
+        </s.Container>
+      </s.Container>
+    </s.Screen>
   );
 }
 

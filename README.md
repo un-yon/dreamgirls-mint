@@ -1,70 +1,94 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Installation 🛠️
 
-## Available Scripts
+```
 
-In the project directory, you can run:
+Make sure you have node.js installed so you can use npm, then run:
 
-### `npm start`
+```sh
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Usage ℹ️
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In order to make use of this dapp, all you need to do is change the configurations to point to your smart contract as well as update the images and theme file.
 
-### `npm test`
+For the most part all the changes will be in the `public` folder.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To link up your existing smart contract, go to the `public/config/config.json` file and update the following fields to fit your smart contract, network and marketplace details. The cost field should be in wei.
 
-### `npm run build`
+Note: this dapp is designed to work with the intended NFT smart contract, that only takes one parameter in the mint function "mintAmount". But you can change that in the App.js file if you need to use a smart contract that takes 2 params.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```json
+{
+  "CONTRACT_ADDRESS": "0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
+  "SCAN_LINK": "https://polygonscan.com/token/0x827acb09a2dc20e39c9aad7f7190d9bc53534192",
+  "NETWORK": {
+    "NAME": "Ethereum",
+    "SYMBOL": "Eth",
+    "ID": 1
+  },
+  "NFT_NAME": "Your Project",
+  "SYMBOL": "Your Symbol (All Caps)",
+  "MAX_SUPPLY": 1000,
+  "GWEI_COST": 60000000,
+  "DISPLAY_COST": 0.06,
+  "GAS_LIMIT": 21000,
+  "MARKETPLACE": "OpenSea",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/",
+  "SHOW_BACKGROUND": true
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Make sure you copy the contract ABI from remix and paste it in the `public/config/abi.json` file.
+(follow the youtube video if you struggle with this part).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Now you will need to create and change 2 images and a gif in the `public/config/images` folder, `bg.png`, `example.gif` and `logo.png`.
 
-### `npm run eject`
+Next change the theme colors to your liking in the `public/config/theme.css` file.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```css
+:root {
+  --primary: #ebc908;
+  --primary-text: #1a1a1a;
+  --secondary: #ff1dec;
+  --secondary-text: #ffffff;
+  --accent: #ffffff;
+  --accent-text: #000000;
+}
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Now you will need to create and change the `public/favicon.ico`, `public/logo192.png`, and
+`public/logo512.png` to your brand images.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Remember to update the title and description the `public/index.html` file
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```html
+<title>Nerdy Coder Clones</title>
+<meta name="description" content="Mint your Nerdy Coder Clone NFT" />
+```
 
-## Learn More
+Also remember to update the short_name and name fields in the `public/manifest.json` file
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```json
+{
+  "short_name": "LPD",
+  "name": "Lord Profit Designs NFT"
+}
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+After all the changes you can run.
 
-### Code Splitting
+```sh
+npm run start
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Or create the build if you are ready to deploy.
 
-### Analyzing the Bundle Size
+```sh
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Now you can host the contents of the build folder on a server.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+That's it! you're done.

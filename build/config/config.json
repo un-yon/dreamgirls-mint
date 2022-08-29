@@ -1,9 +1,9 @@
 {
-  "CONTRACT_ADDRESS": "0x2c0C769138f018EE3Fa5da2290014cfaE267099e",
-  "SCAN_LINK": "https://ropsten.etherscan.io/token/0x2c0c769138f018ee3fa5da2290014cfae267099e?a=0xaf5f81f04ba7266ec8a84c80c8a8e482b082ffe6",
+  "CONTRACT_ADDRESS": "0xa1ef8781b4774b21cf6ac75d816e8616280a0161",
+  "SCAN_LINK": "https://etherscan.io/address/0xa1ef8781b4774b21cf6ac75d816e8616280a0161",
   "NETWORK": {
-    "NAME": "Ropsten",
-    "SYMBOL": "rETH",
+    "NAME": "Ethereum",
+    "SYMBOL": "ETH",
     "ID": 3
   },
   "NFT_NAME": "mūz alias: the dream girl",
